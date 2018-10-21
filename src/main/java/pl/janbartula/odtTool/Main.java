@@ -1,4 +1,4 @@
-package pl.janbartula.odttool;
+package pl.janbartula.odtTool;
 
 import org.apache.commons.io.FileUtils;
 import org.json.JSONArray;

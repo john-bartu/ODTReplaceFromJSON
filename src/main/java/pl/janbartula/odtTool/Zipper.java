@@ -1,4 +1,4 @@
-package pl.janbartula.odttool;
+package pl.janbartula.odtTool;
 
 import java.io.File;
 import java.io.FileInputStream;
