@@ -1,0 +1,14 @@
+{
+  "datas": [
+    {
+      "name": "MyName",
+      "login": "MyLogin",
+      "password": "MyPassword"
+    },
+    {
+      "name": "MyName2",
+      "login": "MyLogin2",
+      "password": "MyPassword2"
+    }
+  ]
+}
