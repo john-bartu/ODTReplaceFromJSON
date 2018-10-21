@@ -10,10 +10,10 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
-public class Zipper
+class Zipper
 {
 
-    public static void unzip(String file_path, String file_name, String unzip_path) throws IOException
+    static void unzip(String file_path, String file_name, String unzip_path) throws IOException
     {
         if (!unzip_path.endsWith("/"))
         {
@@ -63,7 +63,7 @@ public class Zipper
     }
 
 
-    public static void zip(String files_path, String zip_path, String zip_name) throws IOException
+    static void zip(String files_path, String zip_path, String zip_name) throws IOException
     {
 
         FileOutputStream fos = new FileOutputStream(zip_path + zip_name);
@@ -80,8 +80,8 @@ public class Zipper
     /**
      * @param fileToZip Path to file/directory to zip
      * @param fileName  Path to zipped file.
-     * @param zipOut
-     * @throws IOException
+     * @param zipOut ZipOutStream
+     * @throws IOException IOException
      */
     private static void zipPath(File fileToZip, String fileName, ZipOutputStream zipOut) throws IOException
     {
@@ -105,10 +105,10 @@ public class Zipper
 
 
             File[] children = fileToZip.listFiles();
+
+            assert children != null;
             for (File childFile : children)
             {
-
-
                 zipPath(childFile, fileName + "/" + childFile.getName(), zipOut);
             }
             return;
