@@ -12,13 +12,14 @@ import java.nio.file.Paths;
 
 public class Main
 {
-    public static String tempDirectory = "temp/";
+    static String tempDirectory = "temp/";
     private static String inputDirectory = "input/";
     private static String outputDirectory = "output/";
 
 
     private static String templateFile = "content.xml";
     private static String dataFile = "data.json";
+
 
     public static void main(String[] args)
     {
@@ -103,7 +104,7 @@ public class Main
 
 
                 //Save replaced content file to temporary directory
-                saveFile(tempDirectory + templateFile, tempTemplate, StandardCharsets.UTF_8);
+                saveFile(tempDirectory + templateFile, tempTemplate);
 
                 //Zip temporary directory with replaced content file
                 Zipper.zip(tempDirectory, outputDirectory, "File" + index + ".odt");
@@ -125,25 +126,41 @@ public class Main
      * @return Read file as String
      * @throws IOException Exception
      */
-    static String readFile(String path) throws IOException
+    private static String readFile(String path) throws IOException
     {
         return readFile(path, StandardCharsets.UTF_8);
     }
 
     /**
      * @param path     String path to file
-     * @param encoding Encoding od file
+     * @param encoding Encoding of file
      * @return Read file as String
      * @throws IOException Exception
      */
-    static String readFile(String path, Charset encoding) throws IOException
+    private static String readFile(String path, Charset encoding) throws IOException
     {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, encoding);
     }
 
 
-    static void saveFile(String path, String content, Charset encoding) throws IOException
+    /**
+     * @param path     String path to file
+     * @param content Content to save - String
+     * @throws IOException Exception
+     */
+    private static void saveFile(String path, String content) throws IOException
+    {
+        saveFile(path, content, StandardCharsets.UTF_8);
+    }
+
+    /**
+     * @param path     String path to file
+     * @param content Content to save - String
+     * @param encoding Encoding of file
+     * @throws IOException Exception
+     */
+    private static void saveFile(String path, String content, Charset encoding) throws IOException
     {
         try (Writer bufferedWriter = new BufferedWriter(
                 new OutputStreamWriter(new FileOutputStream(path), encoding)
